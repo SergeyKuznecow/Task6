@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    table {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 80%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    input[type="submit"] {
+      background-color: #28a745;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    input[type="submit"]:hover {
+      background-color: #218838;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    p {
+      color: #dc3545;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Lastname</th>
+    <th>Age</th>
+    <th>Update</th>
+    <th>Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="user : ${users}">
+    <td th:text="${user.name}"></td>
+    <td th:text="${user.lastName}"></td>
+    <td th:text="${user.age}"></td>
+    <td>
+      <form th:action="@{/update}" method="get">
+        <input type="hidden" name="id" th:value="${user.getId()}">
+        <input type="submit" value="Update">
+      </form>
+    </td>
+    <td>
+      <form th:method="post" th:action="@{/delete}">
+        <input type="hidden" name="id" th:value="${user.getId()}">
+        <input type="submit" value="Delete">
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<br>
+<th:block th:if="${message != null}">
+  <p th:text="${message}"></p>
+</th:block>
+<br>
+<br>
+<a href="/create">Create new user</a>
+</body>
+</html>

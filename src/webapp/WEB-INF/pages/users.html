@@ -44,13 +44,22 @@
     input[type="submit"]:hover {
       background-color: #218838;
     }
-    a {
-      color: #007bff;
+    .stop-button {
+      display: inline-block;
+      background-color: red;
+      color: white;
+      padding: 20px 40px;
+      border: 5px solid white;
+      border-radius: 10px;
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
       text-decoration: none;
-      font-size: 16px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.2s;
     }
-    a:hover {
-      text-decoration: underline;
+    .stop-button:hover {
+      transform: scale(1.05);
     }
     p {
       color: #dc3545;
@@ -96,6 +105,6 @@
 </th:block>
 <br>
 <br>
-<a href="/create">Create new user</a>
+<a href="/create" class="stop-button">Create new user</a>
 </body>
 </html>
